@@ -14,7 +14,7 @@ public class MaiorEMenor {
             if(menor == null || item.getProduto().getValorUnitario() < menor.getValorUnitario()) {
                 menor = item.getProduto();
             }
-            else if (maior == null || item.getProduto().getValorUnitario() > maior.getValorUnitario()) {
+            if (maior == null || item.getProduto().getValorUnitario() > maior.getValorUnitario()) {
                 maior = item.getProduto();
             }
         }
