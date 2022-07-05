@@ -1,6 +1,6 @@
 package com.example.testingweb.produto;
 
-public class ValorInvalido extends Exception {
+public class ValorInvalidoException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	@Override

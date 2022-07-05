@@ -4,6 +4,8 @@ import com.example.testingweb.builders.CarrinhoDeCompraBuilder;
 import com.example.testingweb.carrinho.CarrinhoDeCompra;
 import com.example.testingweb.carrinho.ItemDoCarrinho;
 
+import static org.junit.Assert.assertThrows;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +24,7 @@ public class MaiorEMenorTest {
 	}
     
     @Test
-    public void deve_verificar_o_menor_item_em_ordem_decrescente() {
+    public void deve_verificar_o_menor_item_em_ordem_decrescente() throws CarrinhoVazioException {
         CarrinhoDeCompra carrinho = carrinhoDecrescente();
         
         MaiorEMenor algoritmo = new MaiorEMenor();
@@ -40,7 +42,7 @@ public class MaiorEMenorTest {
     }
 
     @Test
-    public void deve_verificar_o_maior_item_em_ordem_decrescente(){
+    public void deve_verificar_o_maior_item_em_ordem_decrescente() throws CarrinhoVazioException{
         CarrinhoDeCompra carrinho = carrinhoDecrescente();
 
         MaiorEMenor algoritmo = new MaiorEMenor();
@@ -50,7 +52,7 @@ public class MaiorEMenorTest {
     }
 
     @Test
-    public void deve_verificar_o_maior_preco_unitario_em_ordem_crescente() throws ValorInvalido{
+    public void deve_verificar_o_maior_preco_unitario_em_ordem_crescente() throws ValorInvalidoException, CarrinhoVazioException{
         CarrinhoDeCompra carrinho = new CarrinhoDeCompraBuilder()
             .emOrdemCrescente()
             .construir();
@@ -62,7 +64,7 @@ public class MaiorEMenorTest {
     }
 
     @Test
-    public void deve_verificar_o_maior_em_ordem_decrescente() throws ValorInvalido{
+    public void deve_verificar_o_maior_em_ordem_decrescente() throws ValorInvalidoException, CarrinhoVazioException{
         CarrinhoDeCompra carrinhoDeCompra = new CarrinhoDeCompraBuilder()
             .comItemDoCarrinho(new ItemDoCarrinho(this.geladeira, UMA_UNIDADE))    
             .comItemDoCarrinho(new ItemDoCarrinho(this.liquidificador, UMA_UNIDADE))    
@@ -76,7 +78,19 @@ public class MaiorEMenorTest {
         Assertions.assertEquals(geladeira, algoritmo.getMaior());
     }
 
+
     // outras ordens
     // apenas um produto
     // carrinho sem produto
+
+    @Test
+    public void deve_lancar_execao_para_carrinhos_sem_produtos() throws Exception {
+        CarrinhoDeCompra carrinhoDeCompra = new CarrinhoDeCompraBuilder().construir();
+
+        MaiorEMenor maiorEMenor = new MaiorEMenor();
+
+        Assertions.assertThrows(CarrinhoVazioException.class, () -> {
+            maiorEMenor.encontra(carrinhoDeCompra);
+        });
+    }
 }

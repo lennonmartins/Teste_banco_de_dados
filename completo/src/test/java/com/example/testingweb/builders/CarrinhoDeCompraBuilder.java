@@ -6,7 +6,7 @@ import java.util.List;
 import com.example.testingweb.carrinho.CarrinhoDeCompra;
 import com.example.testingweb.carrinho.ItemDoCarrinho;
 import com.example.testingweb.produto.Produto;
-import com.example.testingweb.produto.ValorInvalido;
+import com.example.testingweb.produto.ValorInvalidoException;
 
 public class CarrinhoDeCompraBuilder {
 
@@ -18,7 +18,7 @@ public class CarrinhoDeCompraBuilder {
     private List<ItemDoCarrinho> itens = new ArrayList<>();
     
 
-    public CarrinhoDeCompraBuilder () throws ValorInvalido{
+    public CarrinhoDeCompraBuilder () throws ValorInvalidoException{
         geladeira = new Produto("Geladeira", 450.0);
         liquidificador = new Produto("Liquidificador", 250.0);
         pratos = new Produto("Jogo de pratos", 70.0);

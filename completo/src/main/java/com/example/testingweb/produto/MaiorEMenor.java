@@ -9,7 +9,10 @@ public class MaiorEMenor {
     
     private Produto maior;
     
-    public void encontra(CarrinhoDeCompra carrinho) {
+    public void encontra(CarrinhoDeCompra carrinho) throws CarrinhoVazioException {
+        if(carrinho.getItensDoCarrinho().size() == 0){
+            throw new CarrinhoVazioException();
+        }
         for(ItemDoCarrinho item : carrinho.getItensDoCarrinho()) {
             if(menor == null || item.getProduto().getValorUnitario() < menor.getValorUnitario()) {
                 menor = item.getProduto();

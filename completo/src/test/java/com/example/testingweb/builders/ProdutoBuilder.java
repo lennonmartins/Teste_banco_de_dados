@@ -1,7 +1,7 @@
 package com.example.testingweb.builders;
 
 import com.example.testingweb.produto.Produto;
-import com.example.testingweb.produto.ValorInvalido;
+import com.example.testingweb.produto.ValorInvalidoException;
 
 public class ProdutoBuilder {
 
@@ -18,7 +18,7 @@ public class ProdutoBuilder {
         return this;
     }
 
-    public Produto construir() throws ValorInvalido {
+    public Produto construir() throws ValorInvalidoException {
         Produto produto = new Produto(descricao,valorUnitario);
         return produto;
     }
